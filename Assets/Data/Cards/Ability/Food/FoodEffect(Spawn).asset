@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb1ac50e2daeaa4e94cde1d8bb61c77, type: 3}
   m_Name: FoodEffect(Spawn)
   m_EditorClassIdentifier: 
-  _prefabToSpawn: {fileID: 5698701603857919560, guid: 0b1e26f4fa2fe8c47bbcaf37c07fd1b4,
+  _prefabToSpawn: {fileID: 7383067876387894634, guid: 6a0d0699c9b773a47a7218596f6236d2,
     type: 3}
