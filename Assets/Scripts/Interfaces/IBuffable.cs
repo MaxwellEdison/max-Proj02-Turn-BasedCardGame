@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable
+public interface IBuffable
 {
-    void TakeDamage(int damage);
-    void Kill();
+    void Buff();
+    void Unbuff();
+
 }
