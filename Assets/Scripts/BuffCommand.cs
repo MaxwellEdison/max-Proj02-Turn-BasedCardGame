@@ -10,11 +10,11 @@ public class BuffCommand : ICommand
 
     public void Execute()
     {
-        _token.Buff();
+        _buffableToken.Buff();
     }
 
     public void Undo()
     {
-        _token.Debuff();
+        _buffableToken.Unbuff();
     }
 }
