@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewAbilityCard",menuName = "CardData/AbilityCard")]
 public class AbilityCardData : ScriptableObject
@@ -16,4 +14,7 @@ public class AbilityCardData : ScriptableObject
 
     [SerializeField] CardPlayEffect _playEffect = null;
     public CardPlayEffect PlayEffect => _playEffect;
+
+/*    [SerializeField] Vector3 _uiPosition = null;
+    public Vector3 UIPosition => _uiPosition;*/
 }

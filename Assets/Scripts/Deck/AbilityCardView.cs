@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -15,5 +13,7 @@ public class AbilityCardView : MonoBehaviour
         _nameTextUI.text = abilityCard.Name;
         _costTextUI.text = abilityCard.Cost.ToString();
         _graphicUI.sprite = abilityCard.Graphic;
+        //_cardPosition.position = abilityCard.UIPosition;
+        
     }
 }

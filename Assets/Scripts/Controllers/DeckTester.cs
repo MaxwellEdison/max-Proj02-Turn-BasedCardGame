@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeckTester : MonoBehaviour
 {
@@ -8,11 +9,15 @@ public class DeckTester : MonoBehaviour
     Deck<AbilityCard> _abilityDeck = new Deck<AbilityCard>();
     Deck<AbilityCard> _abilityDiscard = new Deck<AbilityCard>();
     Deck<AbilityCard> _playerHand = new Deck<AbilityCard>();
-    
+    public Button _drawCardButton;
+    public Button _playCardButton;
+
 
     private void Start()
     {
         SetupAbilityDeck();
+        _drawCardButton.onClick.AddListener(Draw);
+        _playCardButton.onClick.AddListener(PlayTopCard);
     }
 
 
@@ -47,27 +52,17 @@ public class DeckTester : MonoBehaviour
             AbilityCard newAbilityCard = new AbilityCard(abilityData);
             _abilityDeck.Add(newAbilityCard);
         }
-/*        Debug.Log("Creating Ability Cards...");
-        //creates test cards A through D
-        AbilityCard cardA = new AbilityCard("Slash");
-        AbilityCard cardB = new AbilityCard("Kick");
-        AbilityCard cardC = new AbilityCard("Charge");
-        AbilityCard cardD = new AbilityCard("Shout");
 
-        _abilityDeck.Add(cardA);
-        _abilityDeck.Add(cardB);
-        _abilityDeck.Add(cardC);
-        _abilityDeck.Add(cardD);*/
 
         _abilityDeck.Shuffle();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+/*        if (Input.GetKeyDown(KeyCode.Q))
         {
             Draw();
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.W))
         {
             PrintPlayerHand();
@@ -81,8 +76,11 @@ public class DeckTester : MonoBehaviour
     private void Draw()
     {
         AbilityCard newCard = _abilityDeck.Draw(DeckPosition.Top);
+        //Instantiate(newCard, new Vector3(i * 2.0F, 0, 0), Quaternion.identity);
         Debug.Log("Drew card: " + newCard.Name);
         _playerHand.Add(newCard, DeckPosition.Top);
+
+        //newCard._cardPosition = new Vector3();
 
         _abilityCardView.Display(newCard);
     }

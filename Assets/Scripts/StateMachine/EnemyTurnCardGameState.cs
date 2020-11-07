@@ -6,15 +6,23 @@ public class EnemyTurnCardGameState : CardGameState
 {
     public static event Action EnemyTurnBegan;
     public static event Action EnemyTurnEnded;
-
+    public int _turnsToSkip = 0;
     [SerializeField] float _pauseDuration = 1.5f;
 
     public override void Enter()
     {
         Debug.Log("enemy turn: enter");
         EnemyTurnBegan?.Invoke();
+        if(_turnsToSkip >= 1)
+        {
+            EnemyTurnEnded?.Invoke();
+            StateMachine.ChangeState<PlayerTurnCardGameState>();
+        }
+          else
+        {
+            StartCoroutine(EnemyThinkingRoutine(_pauseDuration));
+        }
 
-        StartCoroutine(EnemyThinkingRoutine(_pauseDuration));
     }
 
     public override void Exit()

@@ -2,6 +2,8 @@
 
 public class AbilityCard : Card
 {
+
+    //public Vector3 UIPosition { get; private set; }
     public int Cost { get; private set; }
     public Sprite Graphic { get; private set; }
     public CardPlayEffect PlayEffect { get; private set; }
@@ -24,6 +26,7 @@ public class AbilityCard : Card
         Name = Data.Name;
         Cost = Data.Cost;
         Graphic = Data.Graphic;
+        //UIPosition = Data.UIPosition;
         PlayEffect = Data.PlayEffect;
     }
 

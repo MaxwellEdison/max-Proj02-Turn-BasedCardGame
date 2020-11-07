@@ -42,18 +42,31 @@ public class PlayerCommands : MonoBehaviour
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
+        
+
         if(Physics.Raycast(ray, out _hitInfo, Mathf.Infinity))
         {
+            
             Debug.Log("Ray hit: " + _hitInfo.transform.name);
         }
     }
 
     void SpawnToken()
     {
-        //create the command
-        ICommand spawnTokenCommand = new SpawnTokenCommand(_boardSpawner, _hitInfo.point);
-        //perform the command
-        _commandInvoker.ExecuteCommand(spawnTokenCommand);
+/*        if (_hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
+        {
+            //create the command
+            ICommand spawnTokenCommand = new SpawnTokenCommand(_boardSpawner, _hitInfo.point);
+            //perform the command
+            _commandInvoker.ExecuteCommand(spawnTokenCommand);
+        }*/
+
+            //create the command
+            ICommand spawnTokenCommand = new SpawnTokenCommand(_boardSpawner, _hitInfo.point);
+            //perform the command
+            _commandInvoker.ExecuteCommand(spawnTokenCommand);
+
+
     }
 
     public void Undo()
