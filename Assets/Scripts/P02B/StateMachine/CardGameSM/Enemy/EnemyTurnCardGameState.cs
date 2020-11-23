@@ -7,21 +7,27 @@ public class EnemyTurnCardGameState : CardGameState
     public static event Action EnemyTurnBegan;
     public static event Action EnemyTurnEnded;
     public int _turnsToSkip = 0;
-    [SerializeField] float _pauseDuration = 1.5f;
+    [SerializeField] float _pauseDuration = 5f;
+    public EnemyLogic _enemyThink;
+
+
 
     public override void Enter()
     {
         Debug.Log("enemy turn: enter");
         EnemyTurnBegan?.Invoke();
-        if(_turnsToSkip >= 1)
-        {
-            EnemyTurnEnded?.Invoke();
+        StartCoroutine(EnemyThinkingRoutine(_pauseDuration));
+        /*        if (_turnsToSkip >= 1)
+                {
+        Debug.Log("Skipping enemy state");
+                Debug.Log("pretending to skip this many enemy states: " + _turnSkip);
+        EnemyTurnEnded?.Invoke();
             StateMachine.ChangeState<PlayerTurnCardGameState>();
         }
           else
         {
-            StartCoroutine(EnemyThinkingRoutine(_pauseDuration));
-        }
+            
+        }*/
 
     }
 
@@ -33,6 +39,8 @@ public class EnemyTurnCardGameState : CardGameState
     IEnumerator EnemyThinkingRoutine(float pauseDuration)
     {
         Debug.Log("Enemy thinking");
+
+        _enemyThink.StartThinking();
         yield return new WaitForSeconds(pauseDuration);
 
         Debug.Log("enemy performs action");

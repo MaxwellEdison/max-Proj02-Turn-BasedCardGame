@@ -2,8 +2,17 @@
 
 public class Creature : MonoBehaviour, ITargetable, IDamageable
 {
-    int _currentHealth = 10;
+    public int _currentHealth;
+    public int _idealHealth;
+    public int _startingHealth = 100;
+    public int _currentDefense = 0;
+    public int _idealDefense = 5;
 
+    private void Awake()
+    {
+        _currentHealth = _startingHealth;
+        _idealHealth = (2 * _startingHealth) / 3;
+    }
     public void Kill()
     {
         Debug.Log("Kill the creature");

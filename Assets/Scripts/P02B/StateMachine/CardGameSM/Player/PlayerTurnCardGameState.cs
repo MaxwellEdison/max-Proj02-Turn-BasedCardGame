@@ -5,7 +5,7 @@ public class PlayerTurnCardGameState : CardGameState
 {
     [SerializeField] TextMeshProUGUI _playerTurnTextUI = null;
 
-    int _playerTurnCount = 0;
+    public int _playerTurnCount = 0;
 
     public override void Enter()
     {
