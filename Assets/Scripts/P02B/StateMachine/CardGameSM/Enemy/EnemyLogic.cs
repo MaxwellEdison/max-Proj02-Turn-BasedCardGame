@@ -8,13 +8,17 @@ public class EnemyLogic : MonoBehaviour
     public int _pHealthPrio;
     public int _currentDefense;
     public int _idealDefense;
+    public EnemyDeck _eDeck;
     int _d10;
     //public static EnemyLogic _enemyThink;
 
     public void StartThinking()
     {
+
         Player _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Creature _creature = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Creature>();
+        _eDeck = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyDeck>();
+
         _playerHealth = _player._health;
         _currentHealth = _creature._currentHealth;
         _idealHealth = _creature._idealHealth;
@@ -23,6 +27,7 @@ public class EnemyLogic : MonoBehaviour
     }
     public void Choose()
     {
+
         Debug.Log("Enemy Choosing");
         Random.InitState(Mathf.RoundToInt((Time.deltaTime)*1000)+GameObject.Find("StateController").GetComponent<PlayerTurnCardGameState>()._playerTurnCount);
         _d10 = Random.Range(1, 10);
@@ -105,24 +110,30 @@ public class EnemyLogic : MonoBehaviour
     public void Heal()
     {
         Debug.Log("I healed!");
-        //EndLogic();
+        EndLogic();
     }
 
     public void Defend()
     {
         Debug.Log("I defended!");
-        //EndLogic();
+        EndLogic();
     }
 
     public void Attack()
     {
         Debug.Log("I attacked!");
-        //EndLogic();
+        EndLogic();
     }
 
-/*    public void EndLogic()
+    public void EndLogic()
     {
-
-    }*/
+        if(_eDeck._enemyHand.Count < _eDeck._maxCards)
+        {
+            _eDeck.Draw();
+        } else
+        {
+            return;
+        }
+    }
 
 }

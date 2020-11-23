@@ -38,7 +38,7 @@ public abstract class StateMachine : MonoBehaviour
         }
     }
 
-    void Transition(State newState)
+    public void Transition(State newState)
     {
         //start transition
         InTransition = true;
