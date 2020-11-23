@@ -628,7 +628,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa997062979b03644be7994a73f56787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectToTarget: {fileID: 1803047165}
+  _enemyTarget: {fileID: 1803047165}
+  _playerTarget: {fileID: 1658638371}
+  _enemyState: {fileID: 1052822073}
+  _playerState: {fileID: 1052822071}
 --- !u!1 &518295478
 GameObject:
   m_ObjectHideFlags: 0
