@@ -630,8 +630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyTarget: {fileID: 1803047165}
   _playerTarget: {fileID: 1658638371}
-  _enemyState: {fileID: 1052822073}
-  _playerState: {fileID: 1052822071}
 --- !u!1 &518295478
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,6 +878,50 @@ RectTransform:
   m_AnchoredPosition: {x: -730, y: 375}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &614190469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 614190470}
+  - component: {fileID: 614190471}
+  m_Layer: 5
+  m_Name: playerCards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &614190470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614190469}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -114.8876, y: 48.372612, z: 100.95795}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1990918056}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &614190471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614190469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e00e70d2d35824b92ee887c373834c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pDeck: {fileID: 2060511904}
 --- !u!1 &685911964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,6 +1218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTurnTextUI: {fileID: 580390701}
   _playerTurnCount: 0
+  tController: {fileID: 274156953}
 --- !u!114 &1052822072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,6 +1248,7 @@ MonoBehaviour:
   _turnsToSkip: 0
   _pauseDuration: 5
   _enemyThink: {fileID: 1052822074}
+  tController: {fileID: 274156953}
 --- !u!114 &1052822074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,6 +1756,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tokenPrefab: {fileID: 5547801378029570572, guid: dff1c84c566255b4bbfb050be1fc430b,
     type: 3}
+--- !u!1 &1780940451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1780940452}
+  m_Layer: 5
+  m_Name: enemyCards(debug)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1780940452
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780940451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1990918056}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1803047163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,6 +1858,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8344e9007dc236b4f85aba1dfc9764de, type: 2}
   - {fileID: 11400000, guid: dc33130b10f7a434fbbc111d48057b10, type: 2}
   - {fileID: 11400000, guid: 7a056d441d424974da8e942c0dd8daad, type: 2}
+  - {fileID: 11400000, guid: 72a27f08907fe2d41936b847e5a7b947, type: 2}
+  - {fileID: 11400000, guid: 2fb6b740265206444aa5a8a4ed7e65f2, type: 2}
+  - {fileID: 11400000, guid: 72a27f08907fe2d41936b847e5a7b947, type: 2}
+  - {fileID: 11400000, guid: 2fb6b740265206444aa5a8a4ed7e65f2, type: 2}
+  - {fileID: 11400000, guid: 72a27f08907fe2d41936b847e5a7b947, type: 2}
+  - {fileID: 11400000, guid: 5dc0564cdd2cb55478f8d8adc94e2426, type: 2}
+  - {fileID: 11400000, guid: 5dc0564cdd2cb55478f8d8adc94e2426, type: 2}
+  - {fileID: 11400000, guid: 5dc0564cdd2cb55478f8d8adc94e2426, type: 2}
+  - {fileID: 11400000, guid: 72a27f08907fe2d41936b847e5a7b947, type: 2}
   - {fileID: 11400000, guid: 2fb6b740265206444aa5a8a4ed7e65f2, type: 2}
   - {fileID: 11400000, guid: 2fb6b740265206444aa5a8a4ed7e65f2, type: 2}
   - {fileID: 11400000, guid: 2fb6b740265206444aa5a8a4ed7e65f2, type: 2}
@@ -1913,6 +2001,8 @@ RectTransform:
   - {fileID: 199246301}
   - {fileID: 29966265}
   - {fileID: 1252603143}
+  - {fileID: 1780940452}
+  - {fileID: 614190470}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1988,6 +2078,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8344e9007dc236b4f85aba1dfc9764de, type: 2}
   - {fileID: 11400000, guid: 7a056d441d424974da8e942c0dd8daad, type: 2}
   - {fileID: 11400000, guid: dc33130b10f7a434fbbc111d48057b10, type: 2}
+  - {fileID: 11400000, guid: 7a056d441d424974da8e942c0dd8daad, type: 2}
+  - {fileID: 11400000, guid: 7a056d441d424974da8e942c0dd8daad, type: 2}
+  - {fileID: 11400000, guid: 7a056d441d424974da8e942c0dd8daad, type: 2}
+  - {fileID: 11400000, guid: 72a27f08907fe2d41936b847e5a7b947, type: 2}
+  - {fileID: 11400000, guid: 72a27f08907fe2d41936b847e5a7b947, type: 2}
+  - {fileID: 11400000, guid: 72a27f08907fe2d41936b847e5a7b947, type: 2}
+  - {fileID: 11400000, guid: 72a27f08907fe2d41936b847e5a7b947, type: 2}
+  - {fileID: 11400000, guid: 5dc0564cdd2cb55478f8d8adc94e2426, type: 2}
+  - {fileID: 11400000, guid: 5dc0564cdd2cb55478f8d8adc94e2426, type: 2}
+  - {fileID: 11400000, guid: 5dc0564cdd2cb55478f8d8adc94e2426, type: 2}
+  - {fileID: 11400000, guid: 5dc0564cdd2cb55478f8d8adc94e2426, type: 2}
+  - {fileID: 11400000, guid: 2fb6b740265206444aa5a8a4ed7e65f2, type: 2}
+  - {fileID: 11400000, guid: 2fb6b740265206444aa5a8a4ed7e65f2, type: 2}
+  - {fileID: 11400000, guid: 2fb6b740265206444aa5a8a4ed7e65f2, type: 2}
   - {fileID: 11400000, guid: 2fb6b740265206444aa5a8a4ed7e65f2, type: 2}
   _abilityCardView: {fileID: 1437786673}
   _drawCardButton: {fileID: 199246302}

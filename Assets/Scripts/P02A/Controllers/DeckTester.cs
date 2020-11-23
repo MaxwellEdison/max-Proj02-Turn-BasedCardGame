@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.UIElements;
 using UnityEngine.UI;
 
 public class DeckTester : MonoBehaviour
@@ -8,7 +9,7 @@ public class DeckTester : MonoBehaviour
     [SerializeField] AbilityCardView _abilityCardView = null;
     Deck<AbilityCard> _abilityDeck = new Deck<AbilityCard>();
     Deck<AbilityCard> _abilityDiscard = new Deck<AbilityCard>();
-    Deck<AbilityCard> _playerHand = new Deck<AbilityCard>();
+    public Deck<AbilityCard> _playerHand = new Deck<AbilityCard>();
     public Button _drawCardButton;
     public Button _playCardButton;
 

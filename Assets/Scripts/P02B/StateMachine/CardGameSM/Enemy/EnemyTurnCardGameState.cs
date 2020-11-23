@@ -7,18 +7,17 @@ public class EnemyTurnCardGameState : CardGameState
 {
     public static event Action EnemyTurnBegan;
     public static event Action EnemyTurnEnded;
-    public static event Action e_targetPlayer;
     public int _turnsToSkip = 0;
     [SerializeField] float _pauseDuration = 5f;
     public EnemyLogic _enemyThink;
+    public TargetController tController;
 
 
 
     public override void Enter()
     {
+        tController.TargetPlayer();
         Debug.Log("enemy turn: enter");
-        EnemyTurnBegan?.Invoke();
-        e_targetPlayer?.Invoke();
         StartCoroutine(EnemyThinkingRoutine(_pauseDuration));
         /*        if (_turnsToSkip >= 1)
                 {

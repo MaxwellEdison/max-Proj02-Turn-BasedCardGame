@@ -5,14 +5,14 @@ using TMPro;
 public class PlayerTurnCardGameState : CardGameState
 {
     [SerializeField] TextMeshProUGUI _playerTurnTextUI = null;
-    public static event Action e_targetEnemy;
     public int _playerTurnCount = 0;
+    public TargetController tController;
 
     public override void Enter()
     {
+        tController.TargetEnemy();
         Debug.Log("Player turn: Entering");
         _playerTurnTextUI.gameObject.SetActive(true);
-        e_targetEnemy?.Invoke();
         _playerTurnCount++;
         _playerTurnTextUI.text = "Player Turn: " + _playerTurnCount.ToString();
         // hook into events

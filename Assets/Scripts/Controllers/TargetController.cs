@@ -9,18 +9,7 @@ public class TargetController : MonoBehaviour
     //interfaces don't serialize, so we need a class reference
     [SerializeField] Creature _enemyTarget = null;
     [SerializeField] Player _playerTarget = null;
-    public EnemyTurnCardGameState _enemyState = null;
-    public PlayerTurnCardGameState _playerState = null;
-    UnityEvent e_targetPlayer = new UnityEvent();
-    UnityEvent e_targetEnemy = new UnityEvent();
 
-    private void Awake()
-    {
-        e_targetPlayer.AddListener(TargetPlayer);
-        e_targetEnemy.AddListener(TargetEnemy);
-        //_playerTurn..AddListener(TargetEnemy);
-        //EnemyTurnEnded?.Invoke();
-    }
 
 /*    private void Update()
     {
@@ -37,7 +26,7 @@ public class TargetController : MonoBehaviour
             }
         }
     }*/
-    private void TargetPlayer()
+    public void TargetPlayer()
     {
         ITargetable possibleTarget = _playerTarget.GetComponent<ITargetable>();
         if(possibleTarget != null)
@@ -47,7 +36,7 @@ public class TargetController : MonoBehaviour
             _playerTarget.Target();
         }
     }
-    private void TargetEnemy()
+    public void TargetEnemy()
     {
         ITargetable possibleTarget = _enemyTarget.GetComponent<ITargetable>();
         if (possibleTarget != null)
