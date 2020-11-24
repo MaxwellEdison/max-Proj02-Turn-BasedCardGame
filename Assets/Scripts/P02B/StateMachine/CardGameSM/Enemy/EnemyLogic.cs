@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class EnemyLogic : MonoBehaviour
 {
@@ -9,8 +10,17 @@ public class EnemyLogic : MonoBehaviour
     public int _currentDefense;
     public int _idealDefense;
     public EnemyDeck _eDeck;
+    public TextMeshProUGUI _logicDisplay;
+    public string _choseHP;
+    public string _choseDef;
+    public string _choseAtk;
+    public string _hpInstead;
+    public string _defInstead;
+    public string _atkInstead;
+    public string output;
     int _d10;
     //public static EnemyLogic _enemyThink;
+
 
     public void StartThinking()
     {
@@ -18,6 +28,7 @@ public class EnemyLogic : MonoBehaviour
         Player _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Creature _creature = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Creature>();
         _eDeck = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyDeck>();
+        _logicDisplay = GameObject.Find("CurrentAIAction").GetComponent<TextMeshProUGUI>();
 
         _playerHealth = _player._health;
         _currentHealth = _creature._currentHealth;
@@ -41,6 +52,7 @@ public class EnemyLogic : MonoBehaviour
                 NoHPChoice();
             } else
             {
+                output = _choseHP;
                 Heal();
             }
 
@@ -54,6 +66,7 @@ public class EnemyLogic : MonoBehaviour
                 NoDefChoice();
             } else
             {
+                output = _choseDef;
                 Defend();
             }
 
@@ -67,6 +80,7 @@ public class EnemyLogic : MonoBehaviour
                 NoAtkChoice();
             } else
             {
+                output = _choseAtk;
                 Attack();
             }
 
@@ -77,10 +91,12 @@ public class EnemyLogic : MonoBehaviour
         int _coinFlip = Random.Range(1, 2);
         if (_coinFlip == 1)
         {
+            output = _choseHP + " but " + _atkInstead;
             Attack();
         }
         else
         {
+            output = _choseHP + " but " + _defInstead;
             Defend();
         }
     }
@@ -89,9 +105,11 @@ public class EnemyLogic : MonoBehaviour
         int _coinFlip = Random.Range(1, 2);
         if(_coinFlip == 1)
         {
+            output = _choseDef + " but " + _atkInstead;
             Attack();
         } else
         {
+            output = _choseDef + " but " + _hpInstead;
             Heal();
         }
     }
@@ -100,15 +118,18 @@ public class EnemyLogic : MonoBehaviour
         int _coinFlip = Random.Range(1, 2);
         if (_coinFlip == 1)
         {
+            output = _choseAtk + " but " + _defInstead;
             Defend();
         }
         else
         {
+            output = _choseAtk + " but " + _hpInstead;
             Heal();
         }
     }
     public void Heal()
     {
+
         Debug.Log("I healed!");
         EndLogic();
     }
@@ -127,7 +148,8 @@ public class EnemyLogic : MonoBehaviour
 
     public void EndLogic()
     {
-        if(_eDeck._enemyHand.Count < _eDeck._maxCards)
+        _logicDisplay.text = output;
+        if (_eDeck._enemyHand.Count < _eDeck._maxCards)
         {
             _eDeck.Draw();
         } else

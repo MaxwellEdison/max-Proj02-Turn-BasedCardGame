@@ -16,6 +16,7 @@ public class EnemyTurnCardGameState : CardGameState
 
     public override void Enter()
     {
+        EnemyTurnBegan?.Invoke();
         tController.TargetPlayer();
         Debug.Log("enemy turn: enter");
         StartCoroutine(EnemyThinkingRoutine(_pauseDuration));

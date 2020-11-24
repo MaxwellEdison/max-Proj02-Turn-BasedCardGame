@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputController : MonoBehaviour
 {
@@ -7,7 +8,12 @@ public class InputController : MonoBehaviour
     public event Action PressedCancel = delegate { };
     public event Action PressedLeft = delegate { };
     public event Action PressedRight = delegate { };
+    public Button _playCardButton;
 
+    private void Awake()
+    {
+        _playCardButton.onClick.AddListener(EndTurn);
+    }
     private void Update()
     {
         DetectConfirm();
@@ -15,6 +21,11 @@ public class InputController : MonoBehaviour
         DetectLeft();
         DetectRight();
 
+    }
+
+    private void EndTurn()
+    {
+        PressedConfirm?.Invoke();
     }
 
     private void DetectRight()

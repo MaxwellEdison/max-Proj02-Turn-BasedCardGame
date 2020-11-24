@@ -3,18 +3,20 @@ using UnityEngine;
 
 public class EnemyDeck : MonoBehaviour
 {
-    [SerializeField] List<AbilityCardData> _abilityDeckConfig = new List<AbilityCardData>();
-    [SerializeField] AbilityCardView _abilityCardView = null;
-    Deck<AbilityCard> _abilityDeck = new Deck<AbilityCard>();
-    public Deck<AbilityCard> _abilityDiscard = new Deck<AbilityCard>();
+    [SerializeField] List<AbilityCardData> _enemyAbilityDeckConfig = new List<AbilityCardData>();
+    [SerializeField] AbilityCardView _enemyAbilityCardView = null;
+    Deck<AbilityCard> _enemyAbilityDeck = new Deck<AbilityCard>();
+    public Deck<AbilityCard> _enemyAbilityDiscard = new Deck<AbilityCard>();
     public Deck<AbilityCard> _enemyHand = new Deck<AbilityCard>();
     public int _maxCards = 10;
-
+    [SerializeField] public GameObject _eCardPrefabUI;
+    [SerializeField] public GameObject _eDisplayHandObj;
+    [SerializeField] public DisplayEnemyHand _eDisplayHand;
+    [SerializeField] public List<GameObject> _eDisplayedHand = new List<GameObject>();
 
     private void Start()
     {
         SetupAbilityDeck();
-
     }
 
 
@@ -44,14 +46,14 @@ public class EnemyDeck : MonoBehaviour
     private void SetupAbilityDeck()
     {
 
-        foreach (AbilityCardData abilityData in _abilityDeckConfig)
+        foreach (AbilityCardData abilityData in _enemyAbilityDeckConfig)
         {
             AbilityCard newAbilityCard = new AbilityCard(abilityData);
-            _abilityDeck.Add(newAbilityCard);
+            _enemyAbilityDeck.Add(newAbilityCard);
         }
 
 
-        _abilityDeck.Shuffle();
+        _enemyAbilityDeck.Shuffle();
     }
 
 /*    private void Update()
@@ -81,21 +83,33 @@ public class EnemyDeck : MonoBehaviour
                Draw();
             }
         }
-        AbilityCard newCard = _abilityDeck.Draw(DeckPosition.Top);
+        AbilityCard newCard = _enemyAbilityDeck.Draw(DeckPosition.Top);
         //Instantiate(newCard, new Vector3(i * 2.0F, 0, 0), Quaternion.identity);
         Debug.Log("Enemy drew card: " + newCard.Name);
         Debug.Log("Enemy has " + _enemyHand.Count + " cards.");
         _enemyHand.Add(newCard, DeckPosition.Top);
-
+        
         //newCard._cardPosition = new Vector3();
-
-        _abilityCardView.Display(newCard);
+        PrintEnemyHand();
+        _enemyAbilityCardView.Display(newCard);
     }
     private void PrintEnemyHand()
     {
+        int x = _eDisplayHand._size / _enemyHand.Count;
+
         for (int i = 0; i < _enemyHand.Count; i++)
         {
-            Debug.Log("Enemy Hand Card: " + _enemyHand.GetCard(i).Name);
+            Vector3 cardPos = new Vector3(75, 75, 75);
+
+            GameObject eNewCard = Instantiate(_eCardPrefabUI, cardPos, Quaternion.identity);
+            _eDisplayedHand.Add(eNewCard);
+            _eDisplayedHand[i].transform.SetParent(_eDisplayHandObj.transform, false);
+            _eDisplayedHand[i].transform.localScale = new Vector3(1f, 1f, 1f);
+            _eDisplayedHand[i].transform.localPosition = new Vector3(-500 + (x * 2 * i), 0, 0);
+            AbilityCardView newCardView = _eDisplayedHand[i].GetComponent<AbilityCardView>();
+            newCardView.Display(_enemyHand.GetCard(i));
+            Debug.Log("Player Hand Card: " + _enemyHand.GetCard(i).Name);
+
         }
     }
 
@@ -105,7 +119,7 @@ public class EnemyDeck : MonoBehaviour
         targetCard.Play();
         //TODO consider expanding Remove to accept a deck position
         _enemyHand.Remove(_enemyHand.LastIndex);
-        _abilityDiscard.Add(targetCard);
+        _enemyAbilityDiscard.Add(targetCard);
         Debug.Log("Card added to discard: " + targetCard.Name);
     }
 }

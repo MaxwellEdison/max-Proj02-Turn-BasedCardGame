@@ -1,22 +1,37 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class DisplayPlayerHand : MonoBehaviour
 {
-    public DeckTester _pDeck;
+/*    public DeckTester _pDeck;
     Deck<AbilityCard> _pHand;
+    [SerializeField] public AbilityCardView _showCard;*/
+    [SerializeField] public int _size = 10000;
+    [SerializeField] public List<AbilityCardView> _childList;
+    int lastUpdate = 0;
+/*    Camera _camera = null;
 
-    private void Awake()
+    RaycastHit _hitInfo;*/
+
+    void Awake()
     {
-        _pHand = _pDeck._playerHand;
-        
+
+        //_renderer.material.color = _initialColor;
     }
 
-    public void ShowCards()
+    public void RenewList()
     {
-/*        foreach (AbilityCard abilityCard in _pHand)
+        int children = transform.childCount;
+        for (int i = lastUpdate; i < children; i++)
         {
-            AbilityCard newAbilityCard = new AbilityCard(abilityData);
-            _abilityDeck.Add(newAbilityCard);
-        }*/
+            _childList.Add(transform.GetChild(i).GetComponent<AbilityCardView>());
+        }
+
+        lastUpdate = _childList.Count;
     }
+
+    /*    private void Update()
+        {
+
+        }*/
 }

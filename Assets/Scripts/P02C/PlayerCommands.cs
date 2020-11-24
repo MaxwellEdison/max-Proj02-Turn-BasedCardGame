@@ -42,29 +42,40 @@ public class PlayerCommands : MonoBehaviour
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-        
 
-        if(Physics.Raycast(ray, out _hitInfo, Mathf.Infinity))
+
+        if (Physics.Raycast(ray, out _hitInfo, Mathf.Infinity))
         {
-            
+
             Debug.Log("Ray hit: " + _hitInfo.transform.name);
         }
     }
 
     void SpawnToken()
     {
-/*        if (_hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
+        /*        if (_hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
+                {
+                    //create the command
+                    ICommand spawnTokenCommand = new SpawnTokenCommand(_boardSpawner, _hitInfo.point);
+                    //perform the command
+                    _commandInvoker.ExecuteCommand(spawnTokenCommand);
+                }*/
+/*        if (_hitInfo.transform.name != null)
         {
-            //create the command
-            ICommand spawnTokenCommand = new SpawnTokenCommand(_boardSpawner, _hitInfo.point);
-            //perform the command
-            _commandInvoker.ExecuteCommand(spawnTokenCommand);
+            if (_hitInfo.transform.name == "Table")
+            {*/
+                //create the command
+                ICommand spawnTokenCommand = new SpawnTokenCommand(_boardSpawner, _hitInfo.point);
+                //perform the command
+                _commandInvoker.ExecuteCommand(spawnTokenCommand);
+/*            }
+            else
+            {
+                return;
+            }
         }*/
 
-            //create the command
-            ICommand spawnTokenCommand = new SpawnTokenCommand(_boardSpawner, _hitInfo.point);
-            //perform the command
-            _commandInvoker.ExecuteCommand(spawnTokenCommand);
+
 
 
     }
@@ -79,7 +90,7 @@ public class PlayerCommands : MonoBehaviour
         //component are attached to the same gameObject
         IBuffable buffableUnit = _hitInfo.transform.GetComponent<IBuffable>();
         //if we have the token, command it to buff
-        if(buffableUnit != null)
+        if (buffableUnit != null)
         {
             ICommand buffCommand = new BuffCommand(buffableUnit);
             _commandInvoker.ExecuteCommand(buffCommand);
